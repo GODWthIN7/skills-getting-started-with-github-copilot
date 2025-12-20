@@ -28,14 +28,40 @@ document.addEventListener("DOMContentLoaded", () => {
           ${details.participants.length > 0 ? `
           <div class="participants-section">
             <p><strong>Current Participants:</strong></p>
-            <ul>
-              ${details.participants.map(p => `<li>${p}</li>`).join('')}
+            <ul class="participants-list">
+              ${details.participants.map(p => `<li>${p} <button class="delete-participant" data-email="${p}" data-activity="${name}">&times;</button></li>`).join('')}
             </ul>
           </div>
           ` : ''}
         `;
 
         activitiesList.appendChild(activityCard);
+
+        // Add event listeners for delete buttons
+        const deleteButtons = activityCard.querySelectorAll('.delete-participant');
+        deleteButtons.forEach(button => {
+          button.addEventListener('click', async () => {
+            const email = button.dataset.email;
+            const activity = button.dataset.activity;
+            try {
+              const response = await fetch(
+                `/activities/${encodeURIComponent(activity)}/signup?email=${encodeURIComponent(email)}`,
+                {
+                  method: "DELETE",
+                }
+              );
+              if (response.ok) {
+                // Refetch activities to update the list
+                fetchActivities();
+              } else {
+                alert('Failed to unregister participant. Please try again.');
+              }
+            } catch (error) {
+              console.error('Error unregistering participant:', error);
+              alert('Error unregistering participant. Please try again.');
+            }
+          });
+        });
 
         // Add option to select dropdown
         const option = document.createElement("option");
