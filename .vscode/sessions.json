@@ -1,0 +1,87 @@
+{
+    "$schema": "https://cdn.statically.io/gh/nguyenngoclongdev/cdn/main/schema/v11/terminal-keeper.json",
+    "theme": "tribe",
+    "active": "default",
+    "activateOnStartup": true,
+    "keepExistingTerminals": false,
+    "sessions": {
+        "default": [
+            {
+                "name": "hello",
+                "autoExecuteCommands": true,
+                "icon": "person",
+                "color": "terminal.ansiGreen",
+                "commands": [
+                    "echo hello"
+                ]
+            },
+            [
+                {
+                    "name": "docker:ros",
+                    "commands": [
+                        "docker run -it --rm ros:noetic-ros-base"
+                    ]
+                },
+                {
+                    "name": "docker:k8s",
+                    "commands": [
+                        "                        // ...existing code...
+                                        {
+                                            "name": "docker:k8s",
+                                            "commands": [
+                                                "docker run -it --rm bitnami/kubectl"
+                                            ]
+                                        },
+                        // ...existing code...
+                         "
+                    ]
+                }
+            ],
+            [
+                {
+                    "name": "docker:nats",
+                    "commands": [
+                        "                        // ...existing code...
+                                        {
+                                            "name": "docker:nats",
+                                            "commands": [
+                                                "docker run -it --rm -p 4222:4222 nats:latest"
+                                            ]
+                                        },
+                        // ...existing code..."
+                    ]
+                },
+                {
+                    "name": "docker:fleet",
+                    "commands": [
+                        "                        // ...existing code...
+                                        {
+                                            "name": "docker:fleet",
+                                            "commands": [
+                                                "docker run -it --rm rancher/fleet:latest"
+                                            ]
+                                        },
+                        // ...existing code..."
+                    ]
+                }
+            ]
+        ],
+        "saved-session": [
+            {
+                "name": "connect",
+                "commands": [
+                    "                    // ...existing code...
+                                {
+                                    "name": "connect",
+                                    "commands": [
+                                        "ssh user@hostname"
+                                    ]
+                                }
+                    // ...existing code...                    git add .vscode/sessions.json
+                    git commit -m "Add Docker commands to terminal sessions"
+                    git push"
+                ]
+            }
+        ]
+    }
+}
